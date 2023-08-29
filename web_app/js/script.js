@@ -7,11 +7,12 @@ $(document).ready(function () {
     });
   });
   $(function () {
-    $('.startbtn').click(function () {
-      $('.st').toggle();
-      $('.cl').toggle();
-
-    });
+    $('.scene_change').click(
+      function () {
+        $('.st').toggle();
+        $('.cl').toggle();
+      }
+    );
   });
 
 
@@ -47,14 +48,14 @@ $(document).ready(function () {
     const getHour = d.getHours();
     const getMin = d.getMinutes();
     const getSec = d.getSeconds();
-    const getMillisec = Math.floor(d.getMilliseconds() / 10);
-    $(".timer").text(`${String(getHour).padStart(2, '0')}:${String(getMin).padStart(2, '0')}:${String(getSec).padStart(2, '0')}.${String(getMillisec).padStart(2, '0')}`);
+    $(".timer").text(`${String(getHour).padStart(2, '0')}:${String(getMin).padStart(2, '0')}:${String(getSec).padStart(2, '0')}`);
   }
 
   function classReplacementRun() {
     $(".start").addClass("disabled");
     $(".stop").removeClass("disabled");
     $(".reset").addClass("disabled");
+
   }
 
   function classReplacementStop() {
@@ -76,6 +77,7 @@ $(document).ready(function () {
     classReplacementRun()
     startTime = Date.now();
     runTimer();
+    $(".scene_change").hide();
   });
 
   $(".stop").click(function () {
@@ -95,6 +97,7 @@ $(document).ready(function () {
     clearTimeout(setTimeoutId);
     elapsedTime = 0
     $(".timer").text("00:00:00");
+    $(".scene_change").show();
   });
 
 
